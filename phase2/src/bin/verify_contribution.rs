@@ -1,6 +1,8 @@
 extern crate phase2;
 extern crate exitcode;
+extern crate itertools;
 
+use itertools::Itertools;
 use std::fs::OpenOptions;
 
 use phase2::parameters::*;
@@ -36,5 +38,5 @@ fn main() {
     let should_filter_points_at_infinity = false;
     let verification_result = new_params.verify(circuit_from_json_file(&circuit_filename), should_filter_points_at_infinity).unwrap();
     assert!(contains_contribution(&verification_result, &contribution));
-    println!("Contribution {} verified.", new_params_filename);
+    println!("Contribution {} verified.\nContribution hash: 0x{:02x}", new_params_filename, contribution.iter().format(""));
 }
