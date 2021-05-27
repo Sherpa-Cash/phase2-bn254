@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
-wget https://tornado-cash-ceremony.s3-us-west-2.amazonaws.com/circuit.json
-wget https://tornado-cash-ceremony.s3-us-west-2.amazonaws.com/phase1radix2m15
-wget https://tornado-cash-ceremony.s3-us-west-2.amazonaws.com/initial.params
+URL=${PHASE2_S3_URL:-https://sherpa-cash-ceremony.s3.amazonaws.com}
+
+wget ${URL}/circuit.json
+wget ${URL}/phase1radix2m15
+wget ${URL}/initial.params
 mv initial.params response_0
 
-for i in $(seq 1 1114); do
-    wget https://tornado-cash-ceremony.s3-us-west-2.amazonaws.com/response_$i
+for((i=1; ;++i)); do
+    (stat response_$i &> /dev/null) || wget ${URL}/response_$i
 done
+
