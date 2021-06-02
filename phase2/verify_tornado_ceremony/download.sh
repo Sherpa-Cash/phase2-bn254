@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-URL=${PHASE2_S3_URL:-https://sherpa-cash-ceremony.s3.amazonaws.com}
+URL=${PHASE2_S3_URL:-https://sherpa-ceremony.s3.eu-central-1.amazonaws.com}
 
 wget ${URL}/circuit.json
 wget ${URL}/phase1radix2m15
