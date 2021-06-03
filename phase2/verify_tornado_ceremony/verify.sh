@@ -2,6 +2,6 @@
 set -e
 
 cargo build --release --bin verify_contribution
-for i in $(seq 1 1114); do
+for i in $(seq 1 4029); do
   ../target/release/verify_contribution circuit.json response_$((i - 1)) response_$i
 done
